@@ -257,12 +257,50 @@ var education = {
 	"onlineCourses" : [
 		{
 			"title" : "JavaScript Crash Course",
-			"scholol" : "Udacity",
+			"school" : "Udacity",
 			"dates" :2014,
 			"url" : "http://www.udacity.com/course/ud804"
 		}
 	]
 }
+
+education.display = function() {
+
+	for (school in education.schools){
+		$("#education").append(HTMLschoolStart);
+		
+		var formattedSchoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+		$(".education-entry:last").append(formattedSchoolName);
+
+		var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+		$(".education-entry:last").append(formattedDegree);
+
+		var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+		$(".education-entry:last").append(formattedDates);
+
+		var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+		$(".education-entry:last").append(formattedLocation);
+
+		if (education.schools[school].majors.length > 0){
+			for (major in education.schools[school].majors){
+				var formattedMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors[major]);
+				$(".education-entry:last").append(formattedMajor);
+			}
+		}
+	}
+
+	for (onlineCourse in education.onlineCourses){
+		$("#education").append(HTMLonlineClasses);
+
+		var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title);
+		var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[onlineCourse].school);
+		var formattedTitleSchool = formattedTitle + formattedSchool ;
+		$("#education").append(formattedTitleSchool);
+	}
+
+}
+
+education.display();
 
 /*
 var work = {
