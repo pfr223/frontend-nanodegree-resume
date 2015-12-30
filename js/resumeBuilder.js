@@ -207,7 +207,7 @@ var education = {
 	   		"city" : "Fort Lauderdale, FL",
 	   		"degree" : "Masters",
 	   		"majors": ["CS"],
-	   		"dates" : 2013
+	   		"dates" : 2013,
 	   		"url" : "http://example.com"
 	   },
 	   {
@@ -215,7 +215,7 @@ var education = {
 	   		"city" : "Saint, Petersburg, FL",
 	   		"degree" : "BA",
 	   		"majors": ["CS"],
-	   		"dates" : 2003
+	   		"dates" : 2003,
 	   		"url" : "http://example.com"
 	   }
 	],
@@ -229,36 +229,156 @@ var education = {
 	]
 }
 
-
+/*
 var work = {
 	"jobs": [
 		{
 			"employer": "Planet Express",
 			"title": "Delivery Boy",
+			"location": "Beijing",
 			"dates": "January 3000 - Future",
 			"description": "Who moved my cheese cheesy feet cauliflower"
 		},		
 		{
 			"employer": "Panucci's Pizza",
 			"title": "Delivery Boy",
+			"location": "Shanghai",
 			"dates": "January 1999 - Future",
 			"description": "AAAAAAAAAAAAAAAAAAAAAAWho moved my cheese cheesy feet cauliflower"
 		}
 	]
 }
+*/
 
+var work = {
+  "jobs": [
+    {
+      "employer": "Udacity",
+      "title": "Course Developer",
+      "location": "Mountain View, CA",
+      "dates": "Feb 2014 - Current",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "LearnBIG",
+      "title": "Software Engineer",
+      "location": "Seattle, WA",
+      "dates": "May 2013 - Jan 2014",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "LEAD Academy Charter High School",
+      "title": "Science Teacher",
+      "location": "Nashville, TN",
+      "dates": "Jul 2012 - May 2013",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    },
+    {
+      "employer": "Stratford High School",
+      "title": "Science Teacher",
+      "location": "Nashville, TN",
+      "dates": "Jun 2009 - Jun 2012",
+      "description": "Who moved my cheese cheesy feet cauliflower cheese. Queso taleggio when the cheese comes out everybody's happy airedale ricotta cheese and wine paneer camembert de normandie. Swiss mozzarella cheese slices feta fromage frais airedale swiss cheesecake. Hard cheese blue castello halloumi parmesan say cheese stinking bishop jarlsberg."
+    }
+  ]
+};
 
 var projects = {
 	"projects" : [
 		{
 			"title": "Sample Project 1",
 			"dates": "2014",
-			"description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-			"images": [
-			     "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg",
-			     "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg"
-			     ]
+			"description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+			"images":  "images/fry.jpg"
+			//[
+			  //   "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg",
+			  //   "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg"
+			  //   ]
 		}
 	]
 }
 
+
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	for(skill in bio.skills) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+		$("#skills").append(formattedSkill);
+	}
+}
+
+work.display = function() {
+
+	for (job in work.jobs){
+		$("#workExperience").append(HTMLworkStart);
+		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var formattedEmployerTitle = formattedEmployer + formattedTitle;
+		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(formattedEmployerTitle);
+		$(".work-entry:last").append(formattedDates);
+		$(".work-entry:last").append(formattedLocation);
+		$(".work-entry:last").append(formattedDescription);
+	}
+
+}
+
+work.display();
+
+
+projects.display = function() {
+	for (project in projects.projects){
+		$("#projects").append(HTMLprojectStart);
+		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images);
+		$(".project-entry:last").append(formattedTitle);
+		$(".project-entry:last").append(formattedDates);
+		$(".project-entry:last").append(formattedDescription);
+		$(".project-entry:last").append(formattedImage);
+	}
+}
+
+projects.display();
+
+
+
+
+
+
+$(document).click(function(loc) {
+    var x = loc.pageX;
+    var y = loc.pageY;
+    
+    logClicks(x, y);
+});
+
+function locationizer(work_obj) {
+    var arrLocation = [];
+    for ( job in work_obj.jobs) {
+        var newLocation = work_obj.jobs[job].location;
+        arrLocation.push(newLocation);
+    }
+    return arrLocation;
+    
+}
+
+
+
+function inName(name) {
+	name = bio.name;
+	name = name.trim().split(" ");
+	console.log(name);
+	name[1] = name[1].toUpperCase();
+	name[0] = name[0].slice(0, 1).toUpperCase() + name[0].slice(1).toLowerCase();
+	
+	return name[0] + " " + name[1];
+}
+
+$("#main").append(internationalizeButton);
+
+
+projects.display
