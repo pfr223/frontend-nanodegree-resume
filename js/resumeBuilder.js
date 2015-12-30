@@ -289,7 +289,7 @@ var projects = {
 			"title": "Sample Project 1",
 			"dates": "2014",
 			"description": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-			"images":  "images/fry.jpg"
+			"images":  ["images/fry.jpg", "images/197148.gif"]
 			//[
 			  //   "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg",
 			  //   "http://www.planwallpaper.com/static/images/Winter-Tiger-Wild-Cat-Images.jpg"
@@ -311,15 +311,19 @@ work.display = function() {
 
 	for (job in work.jobs){
 		$("#workExperience").append(HTMLworkStart);
+		
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
 		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
 		var formattedEmployerTitle = formattedEmployer + formattedTitle;
-		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
-		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
 		$(".work-entry:last").append(formattedEmployerTitle);
+
+		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
 		$(".work-entry:last").append(formattedDates);
+
+		var formattedLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
 		$(".work-entry:last").append(formattedLocation);
+
+		var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
 		$(".work-entry:last").append(formattedDescription);
 	}
 
@@ -331,14 +335,22 @@ work.display();
 projects.display = function() {
 	for (project in projects.projects){
 		$("#projects").append(HTMLprojectStart);
+
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-		var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images);
 		$(".project-entry:last").append(formattedTitle);
+
+		var formattedDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
 		$(".project-entry:last").append(formattedDates);
+
+		var formattedDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
 		$(".project-entry:last").append(formattedDescription);
-		$(".project-entry:last").append(formattedImage);
+
+		if (projects.projects[project].images.length > 0) {
+			for (image in projects.projects[project].images){ 
+				var formattedImage = HTMLprojectImage.replace("%data%", projects.projects[project].images[image]);
+				$(".project-entry:last").append(formattedImage);
+			}
+		}
 	}
 }
 
