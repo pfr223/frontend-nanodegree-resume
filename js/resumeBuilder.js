@@ -239,7 +239,7 @@ var education = {
 	"schools" : [
 	   {
 	   		"name" : "Nova Southeastern University",
-	   		"city" : "Fort Lauderdale, FL",
+	   		"location" : "Fort Lauderdale, FL",
 	   		"degree" : "Masters",
 	   		"majors": ["CS"],
 	   		"dates" : 2013,
@@ -247,7 +247,7 @@ var education = {
 	   },
 	   {
 	   		"name" : "Eckerd College",
-	   		"city" : "Saint, Petersburg, FL",
+	   		"location" : "Saint, Petersburg, FL",
 	   		"degree" : "BA",
 	   		"majors": ["CS"],
 	   		"dates" : 2003,
@@ -423,3 +423,5 @@ $("#main").append(internationalizeButton);
 
 
 projects.display
+
+$("#mapDiv").append(googleMap);
