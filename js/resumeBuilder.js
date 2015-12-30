@@ -43,10 +43,6 @@ $("#header").prepend(formattedName);
 
 //lesson 1.5
 
-var formattedName = HTMLheaderName.replace("%data%", "Pei Fangrui");
-var formattedRole = HTMLheaderRole.replace("%data%", "Radar Engineer");
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
 
 
 
@@ -200,6 +196,45 @@ var bio = {
 	"bioPic": "images/fry.jpg"
 }
 
+
+var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
+
+//$("#topContacts").append(HTMLcontactGeneric);
+
+var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobil);
+$("#topContacts").append(formattedMobile);
+
+var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+$("#topContacts").append(formattedEmail);
+
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+$("#topContacts").append(formattedTwitter);
+
+var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+$("#topContacts").append(formattedGithub);
+
+var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+$("#topContacts").append(formattedLocation);
+
+var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+$("#header").append(formattedBioPic);
+
+var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+$("#header").append(formattedWelcomeMsg);
+
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	for(skill in bio.skills) {
+		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
+		$("#skills").append(formattedSkill);
+	}
+}
+
+
+
 var education = {
 	"schools" : [
 	   {
@@ -299,13 +334,7 @@ var projects = {
 }
 
 
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
-	for(skill in bio.skills) {
-		var formattedSkill = HTMLskills.replace("%data%", bio.skills[skill]);
-		$("#skills").append(formattedSkill);
-	}
-}
+
 
 work.display = function() {
 
